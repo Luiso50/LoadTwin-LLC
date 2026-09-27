@@ -1,4 +1,4 @@
-name: Deploy FreightDispatch web
+name: Deploy LoadTwin web
 
 on:
   push:

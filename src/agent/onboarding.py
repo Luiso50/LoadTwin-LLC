@@ -24,7 +24,7 @@ def build_onboarding_message(case: OnboardingCase) -> str:
         f"- {DOCUMENT_LABELS[document]}" for document in missing
     )
     return (
-        "Welcome to FreightDispatch LLC. To complete your carrier onboarding, "
+        "Welcome to LoadTwin LLC. To complete your carrier onboarding, "
         "please send the following documents:\n"
         f"{document_list}\n"
         "Reply with one document at a time. Our team will verify each item."

@@ -6,13 +6,13 @@ LoadTwin usa WhatsApp para comunicación rápida; la evidencia y la operación o
 
 Configura en Meta:
 
-- Callback URL: `https://freightdispatch-api.onrender.com/webhooks/whatsapp`
+- Callback URL: `https://loadtwin-api.onrender.com/webhooks/whatsapp`
 - Verify token: el valor privado elegido para `WHATSAPP_VERIFY_TOKEN`
 - Suscripción: mensajes (`messages`)
 
 ## Variables privadas en Render
 
-Configura estas variables en el servicio `freightdispatch-api`:
+Configura estas variables en el servicio `loadtwin-api`:
 
 - `WHATSAPP_VERIFY_TOKEN`
 - `WHATSAPP_APP_SECRET`

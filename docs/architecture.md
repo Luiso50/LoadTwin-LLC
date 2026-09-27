@@ -1,8 +1,8 @@
-# Arquitectura de FreightDispatch LLC
+# Arquitectura de LoadTwin LLC
 
 ## Dirección del producto
 
-FreightDispatch LLC es la capa de automatización e inteligencia que opera sobre Trulos, que continúa siendo el TMS operativo. WhatsApp sirve para comunicación rápida y el correo/documentos sirven como evidencia legal.
+LoadTwin LLC es la capa de automatización e inteligencia que opera sobre Trulos, que continúa siendo el TMS operativo. WhatsApp sirve para comunicación rápida y el correo/documentos sirven como evidencia legal.
 
 ## Estado actual
 

@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: freightdispatch-api
+    name: loadtwin-api
     runtime: python
     plan: free
     buildCommand: pip install -r requirements.txt

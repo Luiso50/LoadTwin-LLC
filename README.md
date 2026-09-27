@@ -1,4 +1,4 @@
-# FreightDispatch LLC
+# LoadTwin LLC
 
 Estructura base del proyecto para la operacion de dispatch de carga y sus integraciones.
 
@@ -39,4 +39,4 @@ Para verificar el webhook en Render, configura las variables privadas `WHATSAPP_
 
 Las solicitudes de contacto se guardan en memoria mientras el proceso está activo; antes de producción deben persistirse en una base de datos y conectarse a un canal de notificación. No se debe automatizar el acceso a bolsas de carga mediante scraping sin autorización del proveedor.
 
-La web usa `http://127.0.0.1:8000` como URL local de la API. Antes de publicar, cambia `window.FREIGHTDISPATCH_API_URL` en `Web/index.html` por la URL HTTPS de la API.
+La web usa `http://127.0.0.1:8000` como URL local de la API. Antes de publicar, cambia `window.LOADTWIN_API_URL` en `Web/index.html` por la URL HTTPS de la API.

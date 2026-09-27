@@ -73,7 +73,7 @@ def test_load_evidence_can_be_reconstructed():
 def test_email_evidence_preserves_legal_metadata():
     response = client.post('/loads/L-9001/evidence/email', json={
         'sender': 'broker@example.com',
-        'recipients': ['dispatch@freightdispatchllc.com'],
+        'recipients': ['dispatch@loadtwinllc.com'],
         'subject': 'Rate confirmation L-9001',
         'body': 'Please find the signed rate confirmation attached.',
         'document_url': 'https://files.example.test/rate-confirmation.pdf',

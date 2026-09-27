@@ -13,7 +13,7 @@ class LoadDetails(BaseModel):
 
 # Prompt del sistema para el Agente Dispatcher
 DISPATCHER_SYSTEM_PROMPT = """
-Eres el Agente de Despacho Automático de FreightDispatch LLC.
+Eres el Agente de Despacho Automático de LoadTwin LLC.
 Tu objetivo es analizar los mensajes entrantes de clientes o choferes y extraer los detalles clave de la carga con total precisión.
 
 REGLAS DE OPERACIÓN:

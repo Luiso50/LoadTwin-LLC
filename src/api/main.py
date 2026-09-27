@@ -148,7 +148,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="FreightDispatch API",
+    title="LoadTwin API",
     version="0.1.0",
     description="API inicial para operaciones de despacho y matching de cargas.",
     lifespan=lifespan,
