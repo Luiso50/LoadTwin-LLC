@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oficina · LoadTwin LLC (Admin)</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="assets/loadtwin-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#102a2d;--coral:#ef6d4e;--bg:#f4f7f7;--card:#fff;--muted:#5a6c6d;--line:#e3eaea;--ok:#2e9e5b;--warn:#d99413}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Montserrat',system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+/* LOGIN */
+#login{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--ink)}
+.login-box{background:#fff;border-radius:18px;padding:48px 44px;width:380px;max-width:92vw;text-align:center}
+.login-box img{height:52px;margin-bottom:18px}
+.login-box h1{font-size:22px;margin-bottom:6px}
+.login-box p{color:var(--muted);font-size:14px;margin-bottom:22px}
+.login-box input{width:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:10px;font-size:16px;font-family:inherit;margin-bottom:14px}
+.login-box button{width:100%;background:var(--coral);color:#fff;border:none;border-radius:10px;padding:14px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit}
+.login-err{color:#c0392b;font-size:13px;margin-top:10px;display:none}
+/* APP */
+#app{display:none}
+header.app{background:var(--ink);color:#fff;padding:18px 0;position:sticky;top:0;z-index:40}
+.head-in{display:flex;align-items:center;justify-content:space-between}
+.head-in img{height:40px;background:#fff;border-radius:8px;padding:4px 10px}
+.head-in .t{font-weight:800;font-size:18px}
+.head-in .t small{display:block;font-weight:500;font-size:12px;color:#9fb3b3}
+.tabs{display:flex;gap:8px;margin:26px 0;flex-wrap:wrap}
+.tab{background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:11px 22px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;color:var(--ink)}
+.tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.panel{display:none;padding-bottom:70px}
+.panel.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.dcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.dcard .dn{font-size:12px;font-weight:800;letter-spacing:2px;color:var(--coral)}
+.dcard h3{margin:8px 0 10px;font-size:19px}
+.dcard ul{list-style:none}
+.dcard li{font-size:14px;color:var(--muted);padding:5px 0 5px 18px;position:relative}
+.dcard li::before{content:"▸";position:absolute;left:0;color:var(--coral)}
+/* PIPELINE */
+.pform{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;align-items:end}
+.pform label{font-size:12px;font-weight:700;color:var(--muted);display:block;margin-bottom:6px}
+.pform input,.pform select{padding:11px 14px;border:1.5px solid var(--line);border-radius:10px;font-family:inherit;font-size:15px}
+.pform button{background:var(--coral);color:#fff;border:none;border-radius:10px;padding:12px 26px;font-weight:700;cursor:pointer;font-family:inherit;font-size:15px}
+.driver{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:16px}
+.driver .dh{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:6px}
+.driver .nm{font-size:18px;font-weight:800}
+.driver .eq{font-size:13px;color:var(--muted);font-weight:600}
+.bar{height:10px;background:var(--line);border-radius:99px;overflow:hidden;margin:12px 0 16px}
+.bar i{display:block;height:100%;background:var(--coral);border-radius:99px;transition:width .3s}
+.gates{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.gate{display:flex;gap:10px;align-items:flex-start;background:var(--bg);border-radius:10px;padding:10px 12px;font-size:13.5px;cursor:pointer}
+.gate input{margin-top:3px;accent-color:var(--coral);width:16px;height:16px}
+.gate.done{color:var(--muted);text-decoration:line-through}
+.gate.blocked{opacity:.55}
+.del{background:none;border:none;color:#c0392b;cursor:pointer;font-size:13px;font-weight:700}
+/* CALC */
+.calc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px;max-width:760px}
+.calc .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.calc label{font-size:12px;font-weight:700;color:var(--muted);display:block;margin-bottom:6px}
+.calc input,.calc select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-family:inherit;font-size:15px}
+.calc button{background:var(--ink);color:#fff;border:none;border-radius:10px;padding:14px;font-weight:700;cursor:pointer;font-family:inherit;font-size:15px;width:100%;margin-top:6px}
+.result{margin-top:22px;background:var(--bg);border-radius:12px;padding:22px;display:none}
+.result.show{display:block}
+.rline{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--line);font-size:15px}
+.rline:last-child{border:none}
+.rline b{font-size:16px}
+.rline.hl b{color:var(--coral);font-size:19px}
+/* FLOORS */
+.ftable{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;max-width:760px}
+.frow{display:grid;grid-template-columns:1fr 160px;gap:12px;padding:14px 22px;border-bottom:1px solid var(--line);align-items:center}
+.frow:last-child{border:none}
+.frow.head{background:var(--ink);color:#fff;font-weight:700;font-size:13px}
+.frow input{padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;font-family:inherit;font-size:15px;width:140px}
+.fnote{font-size:13px;color:var(--muted);margin-top:14px;max-width:760px}
+@media(max-width:640px){.calc .row{grid-template-columns:1fr}.frow{grid-template-columns:1fr 140px}}
+</style>
+</head>
+<body>
+
+<div id="login">
+  <div class="login-box">
+    <img src="assets/loadtwin-logo-full.png" alt="LoadTwin LLC">
+    <h1>Oficina · Acceso Admin</h1>
+    <p>Área restringida. Solo personal autorizado.</p>
+    <input type="password" id="pw" placeholder="Contraseña" autocomplete="off">
+    <button onclick="tryLogin()">Entrar</button>
+    <div class="login-err" id="loginErr">Contraseña incorrecta.</div>
+  </div>
+</div>
+
+<div id="app">
+  <header class="app">
+    <div class="wrap head-in">
+      <img src="assets/loadtwin-logo-full.png" alt="LoadTwin LLC">
+      <div class="t">Oficina<small>Panel de administración · sincronizado con los 7 departamentos</small></div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('deps',this)">Departamentos</button>
+      <button class="tab" onclick="showTab('pipe',this)">Pipeline de choferes</button>
+      <button class="tab" onclick="showTab('calc',this)">Calculadora Transporte</button>
+      <button class="tab" onclick="showTab('floors',this)">Pisos de tarifa</button>
+    </div>
+
+    <!-- DEPARTAMENTOS -->
+    <div class="panel active" id="p-deps">
+      <div class="grid" id="depGrid"></div>
+    </div>
+
+    <!-- PIPELINE -->
+    <div class="panel" id="p-pipe">
+      <div class="pform">
+        <div><label>Nombre del chofer / carrier</label><input id="dName" placeholder="Ej. Carlos Méndez"></div>
+        <div><label>Equipo</label><select id="dEq"></select></div>
+        <div><label>Teléfono</label><input id="dPhone" placeholder="+1 ..."></div>
+        <button onclick="addDriver()">Agregar</button>
+      </div>
+      <div id="driverList"></div>
+    </div>
+
+    <!-- CALCULADORA -->
+    <div class="panel" id="p-calc">
+      <div class="calc">
+        <div class="row">
+          <div><label>Equipo</label><select id="cEq"></select></div>
+          <div><label>Millas publicadas (aéreas)</label><input id="cMiles" type="number" value="235" min="1"></div>
+        </div>
+        <div class="row">
+          <div><label>Deadhead estimado (millas)</label><input id="cDead" type="number" value="40" min="0"></div>
+          <div><label>Precio combustible ($/gal)</label><input id="cPrice" type="number" step="0.01" value="6.30" min="0"></div>
+        </div>
+        <button onclick="calc()">Calcular</button>
+        <div class="result" id="cResult"></div>
+      </div>
+      <p class="fnote">Regla: millas publicadas × 1.15 = millas reales estimadas. El precio se actualiza cada lunes (diésel ~$6.30 / gasolina ~$4.30 en FL).</p>
+    </div>
+
+    <!-- PISOS -->
+    <div class="panel" id="p-floors">
+      <div class="ftable" id="floorTable"></div>
+      <p class="fnote">Piso = tarifa mínima por milla que Despacho puede presentar sin consultar. Todo lo que caiga por debajo requiere aprobación. Se guardan automáticamente en este navegador.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ====== CONFIG ====== */
+// Cambia esta contraseña por la tuya:
+const ADMIN_PASS = "loadtwin2026";
+
+const EQUIPMENT = [
+  {id:"dryvan",     name:"Tractor + Dry Van",        fuel:"Diésel",   mpg:6.5},
+  {id:"reefer",     name:"Tractor + Reefer",         fuel:"Diésel",   mpg:6.0, note:"+ unidad de frío"},
+  {id:"flatbed",    name:"Tractor + Flatbed/Step",   fuel:"Diésel",   mpg:6.5},
+  {id:"poweronly",  name:"Power Only",               fuel:"Diésel",   mpg:6.5},
+  {id:"boxd",       name:"Box Truck 26' (diésel)",   fuel:"Diésel",   mpg:9.0},
+  {id:"boxg",       name:"Box Truck 26' (gasolina)", fuel:"Gasolina", mpg:8.0},
+  {id:"hotd",       name:"Hotshot (diésel)",         fuel:"Diésel",   mpg:11.0},
+  {id:"hotg",       name:"Hotshot (gasolina)",       fuel:"Gasolina", mpg:9.0},
+  {id:"sprd",       name:"Sprinter (diésel)",        fuel:"Diésel",   mpg:15.0},
+  {id:"sprg",       name:"Sprinter (gasolina)",      fuel:"Gasolina", mpg:14.0},
+];
+const GATES = ["Expediente completo","Contrato + POA firmados","Análisis de Transporte","Propuesta aprobada","Sí del chofer","Confirmación firmada","En curso / entregado","Facturado"];
+const DEPS = [
+  {n:"01",t:"Recepción",f:["Vigila el WhatsApp Business cada hora","Responde lo rutinario y pide datos faltantes","Clasifica y escala a coordinación","No promete tarifas, cargas ni pagos"]},
+  {n:"02",t:"Choferes",f:["Recolecta datos: nombre, equipo, ubicación, fecha, rutas","Verifica documentos: CDL, MC/DOT, W-9, COI, registro","Cheque anulado/carta bancaria + autorización ACH","Crea el carrier en Trulos y sube documentos"]},
+  {n:"03",t:"Legal",f:["Llena el contrato pre-firma con datos del chofer","Envía a firma y recibe contrato + poder limitado","Archiva en Drive (carpeta Legal)","Mantiene plantillas actualizadas"]},
+  {n:"04",t:"Despacho",f:["Busca cargas en Trulos según equipo y preferencia","Pide análisis de costo a Transporte","Arma propuestas solo con tarifa aprobada","Pregunta por carga de regreso (ruta redonda)","Genera confirmación de tarifa y da seguimiento"]},
+  {n:"05",t:"Transporte",f:["Tabla de presupuestos por tipo de camión (diésel y gasolina)","Actualiza precio de combustible cada lunes","Calcula: millas reales, galones, costo, adelanto","Regla: millas publicadas × 1.15"]},
+  {n:"06",t:"Finanzas",f:["Factura el 8% semanal por chofer","Verifica adelantos del broker descontados","Control de cobros y pagos","Prepara análisis; Luis decide pagos finales"]},
+  {n:"07",t:"Comercial",f:["Capta choferes y clientes nuevos","Gancho: ruta redonda, no regresas vacío","Mantiene base de datos de contactos"]},
+];
+
+/* ====== LOGIN ====== */
+function tryLogin(){
+  const v = document.getElementById('pw').value;
+  if(v === ADMIN_PASS){
+    document.getElementById('login').style.display='none';
+    document.getElementById('app').style.display='block';
+    init();
+  } else {
+    document.getElementById('loginErr').style.display='block';
+  }
+}
+document.getElementById('pw').addEventListener('keydown',e=>{if(e.key==='Enter')tryLogin();});
+
+/* ====== TABS ====== */
+function showTab(id,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('p-'+id).classList.add('active');
+}
+
+/* ====== INIT ====== */
+let inited=false;
+function init(){
+  if(inited) return; inited=true;
+  // departamentos
+  document.getElementById('depGrid').innerHTML = DEPS.map(d=>
+    `<div class="dcard"><div class="dn">${d.n}</div><h3>${d.t}</h3><ul>${d.f.map(x=>`<li>${x}</li>`).join('')}</ul></div>`
+  ).join('');
+  // selects de equipo
+  const opts = EQUIPMENT.map(e=>`<option value="${e.id}">${e.name} · ${e.fuel}</option>`).join('');
+  document.getElementById('dEq').innerHTML = opts;
+  document.getElementById('cEq').innerHTML = opts;
+  document.getElementById('cEq').addEventListener('change',()=>{
+    const e = EQUIPMENT.find(x=>x.id===document.getElementById('cEq').value);
+    document.getElementById('cPrice').value = e.fuel==='Diésel' ? 6.30 : 4.30;
+  });
+  renderDrivers(); renderFloors();
+}
+
+/* ====== PIPELINE ====== */
+const LS_PIPE='loadtwin_pipeline_v1';
+const getDrivers=()=>JSON.parse(localStorage.getItem(LS_PIPE)||'[]');
+const saveDrivers=d=>localStorage.setItem(LS_PIPE,JSON.stringify(d));
+function addDriver(){
+  const name=document.getElementById('dName').value.trim();
+  if(!name){alert('Escribe el nombre del chofer.');return;}
+  const d=getDrivers();
+  d.push({id:Date.now(),name,eq:document.getElementById('dEq').value,phone:document.getElementById('dPhone').value.trim(),gates:Array(GATES.length).fill(false)});
+  saveDrivers(d);
+  document.getElementById('dName').value='';document.getElementById('dPhone').value='';
+  renderDrivers();
+}
+function toggleGate(id,i){
+  const d=getDrivers();const dr=d.find(x=>x.id===id);
+  // no permitir avanzar sin la puerta anterior (reloj)
+  if(!dr.gates[i] && i>0 && !dr.gates[i-1]){alert('La puerta anterior no está cerrada. El proceso funciona como un reloj.');renderDrivers();return;}
+  dr.gates[i]=!dr.gates[i];saveDrivers(d);renderDrivers();
+}
+function delDriver(id){
+  if(!confirm('¿Eliminar este chofer del pipeline?'))return;
+  saveDrivers(getDrivers().filter(x=>x.id!==id));renderDrivers();
+}
+function renderDrivers(){
+  const list=document.getElementById('driverList');const d=getDrivers();
+  if(!d.length){list.innerHTML='<p style="color:var(--muted)">Sin choferes en seguimiento. Agrega el primero arriba.</p>';return;}
+  list.innerHTML=d.map(dr=>{
+    const done=dr.gates.filter(Boolean).length;
+    const pct=Math.round(done/GATES.length*100);
+    const eq=EQUIPMENT.find(e=>e.id===dr.eq);
+    return `<div class="driver">
+      <div class="dh"><div><span class="nm">${dr.name}</span> <span class="eq">· ${eq?eq.name:dr.eq}${dr.phone?' · '+dr.phone:''}</span></div>
+      <button class="del" onclick="delDriver(${dr.id})">Eliminar</button></div>
+      <div class="bar"><i style="width:${pct}%"></i></div>
+      <div class="gates">${GATES.map((g,i)=>{
+        const prevOk = i===0 || dr.gates[i-1];
+        return `<label class="gate ${dr.gates[i]?'done':''} ${!prevOk&&!dr.gates[i]?'blocked':''}">
+          <input type="checkbox" ${dr.gates[i]?'checked':''} onchange="toggleGate(${dr.id},${i})"><span><b>${i+1}.</b> ${g}</span></label>`;
+      }).join('')}</div>
+    </div>`;
+  }).join('');
+}
+
+/* ====== CALCULADORA ====== */
+function calc(){
+  const e=EQUIPMENT.find(x=>x.id===document.getElementById('cEq').value);
+  const pub=parseFloat(document.getElementById('cMiles').value)||0;
+  const dead=parseFloat(document.getElementById('cDead').value)||0;
+  const price=parseFloat(document.getElementById('cPrice').value)||0;
+  const real=pub*1.15, total=real+dead;
+  const gal=total/e.mpg, fuel=gal*price, adv=fuel*1.15, cpm=fuel/total;
+  const r=document.getElementById('cResult');
+  r.classList.add('show');
+  r.innerHTML=`
+    <div class="rline"><span>Equipo</span><b>${e.name} · ${e.fuel} (${e.mpg} MPG)</b></div>
+    <div class="rline"><span>Millas reales estimadas</span><b>${real.toFixed(0)} + ${dead} deadhead = ${total.toFixed(0)} mi</b></div>
+    <div class="rline"><span>Combustible</span><b>${gal.toFixed(1)} gal</b></div>
+    <div class="rline"><span>Costo de combustible</span><b>$${fuel.toFixed(2)}</b></div>
+    <div class="rline"><span>Costo por milla</span><b>$${cpm.toFixed(2)}/mi</b></div>
+    <div class="rline hl"><span>Adelanto sugerido al broker</span><b>$${adv.toFixed(0)}</b></div>`;
+}
+
+/* ====== PISOS ====== */
+const LS_FLOOR='loadtwin_floors_v1';
+const DEFAULT_FLOORS={dryvan:2.10,reefer:2.30,flatbed:2.20,poweronly:2.00,boxd:1.80,boxg:1.70,hotd:1.90,hotg:1.80,sprd:1.60,sprg:1.50};
+function renderFloors(){
+  const saved=JSON.parse(localStorage.getItem(LS_FLOOR)||'{}');
+  const f={...DEFAULT_FLOORS,...saved};
+  document.getElementById('floorTable').innerHTML =
+    `<div class="frow head"><span>Equipo</span><span>Piso $/milla</span></div>` +
+    EQUIPMENT.map(e=>`<div class="frow"><span>${e.name}</span>
+      <span>$ <input type="number" step="0.05" min="0" value="${f[e.id].toFixed(2)}" onchange="setFloor('${e.id}',this.value)"></span></div>`).join('');
+}
+function setFloor(id,v){
+  const saved=JSON.parse(localStorage.getItem(LS_FLOOR)||'{}');
+  saved[id]=parseFloat(v)||0;
+  localStorage.setItem(LS_FLOOR,JSON.stringify(saved));
+}
+</script>
+</body>
+</html>
