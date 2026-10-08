@@ -1,150 +1,201 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="FreightDispatch LLC conecta cargas, transportistas y operaciones de transporte con precisión.">
-  <title>FreightDispatch LLC | Mueve mejor</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script>window.FREIGHTDISPATCH_API_URL = window.FREIGHTDISPATCH_API_URL || 'https://freightdispatch-api.onrender.com';</script>
-  <script defer src="script.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LoadTwin LLC | Tu próxima carga no se queda esperando</title>
+<meta name="description" content="Servicio de despacho de cargas para choferes y carriers. Buscamos tus cargas, negociamos tarifas y cuidamos tu regreso.">
+<link rel="icon" href="assets/loadtwin-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#102a2d;--coral:#ef6d4e;--bg:#ffffff;--soft:#f4f7f7;--muted:#5a6c6d;--line:#e3eaea}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Montserrat',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+/* NAV */
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand img{height:44px}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{text-decoration:none;color:var(--ink);font-weight:600;font-size:15px}
+.nav-links a:hover{color:var(--coral)}
+.btn{display:inline-block;background:var(--coral);color:#fff;font-weight:700;padding:13px 26px;border-radius:10px;text-decoration:none;font-size:15px;border:none;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(239,109,78,.35)}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+.btn.ghost:hover{box-shadow:none;border-color:var(--coral);color:var(--coral)}
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--ink) 0%,#16383b 60%,#1d4447 100%);color:#fff;padding:96px 0 88px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:480px;height:480px;border:26px solid rgba(239,109,78,.14);border-radius:50%}
+.hero h1{font-size:clamp(34px,5.4vw,58px);font-weight:800;line-height:1.12;max-width:640px}
+.hero h1 em{font-style:normal;color:var(--coral)}
+.hero p{max-width:560px;margin:22px 0 34px;color:#cfdbdb;font-size:18px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero .note{margin-top:20px;font-size:14px;color:#9fb3b3}
+.hero-in{display:flex;align-items:center;gap:52px}
+.hero-tx{flex:1;min-width:0}
+.hero-img{width:400px;max-width:36vw;flex-shrink:0;border-radius:18px;box-shadow:0 24px 60px rgba(0,0,0,.4);object-fit:cover;aspect-ratio:4/3;position:relative;z-index:1}
+@media(max-width:860px){.hero-in{flex-direction:column}.hero-img{width:100%;max-width:480px}}
+/* STRIP */
+.strip{background:var(--coral);color:#fff;padding:18px 0;font-weight:700;letter-spacing:2px;font-size:14px;text-align:center}
+/* SECTIONS */
+section{padding:84px 0}
+section.alt{background:var(--soft)}
+.kicker{color:var(--coral);font-weight:800;letter-spacing:3px;font-size:13px;text-transform:uppercase;margin-bottom:12px}
+h2{font-size:clamp(28px,4vw,42px);font-weight:800;line-height:1.2;margin-bottom:16px}
+h2 em{font-style:normal;color:var(--coral)}
+.lead{color:var(--muted);font-size:18px;max-width:640px;margin-bottom:44px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:32px 28px;transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(16,42,45,.10)}
+.card .n{color:var(--coral);font-weight:800;font-size:14px;letter-spacing:2px}
+.card h3{margin:10px 0 10px;font-size:20px}
+.card p{color:var(--muted);font-size:15px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0;margin-top:8px}
+.step{padding:28px 24px;border-left:3px solid var(--line);position:relative}
+.step:first-child{border-left-color:var(--coral)}
+.step .sn{font-size:13px;font-weight:800;color:var(--coral);letter-spacing:2px}
+.step h3{margin:8px 0;font-size:19px}
+.step p{color:var(--muted);font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.chip{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:10px 22px;font-weight:600;font-size:15px}
+/* FAQ */
+.faq-item{border-bottom:1px solid var(--line);padding:22px 0}
+.faq-item h3{font-size:18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-item h3 span{color:var(--coral);font-size:24px}
+.faq-item p{color:var(--muted);margin-top:10px;display:none}
+.faq-item.open p{display:block}
+/* CONTACT */
+.contact{background:var(--ink);color:#fff;text-align:center}
+.contact h2{color:#fff}
+.contact p{color:#cfdbdb;max-width:560px;margin:0 auto 32px}
+.contact .phone{font-size:26px;font-weight:800;color:#fff;text-decoration:none;display:block;margin:18px 0 6px}
+.contact .mail{font-size:18px;font-weight:700;color:#fff;text-decoration:none;display:block;margin:6px 0 18px}
+.contact .hours{font-size:14px;color:#9fb3b3}
+footer{background:#0b1e20;color:#8fa3a3;padding:34px 0;font-size:14px}
+.foot-in{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+footer img{height:34px}
+@media(max-width:720px){.nav-links a:not(.btn){display:none}section{padding:60px 0}}
+</style>
 </head>
 <body>
-  <div class="top-contact-bar">
-    <div class="top-contact-inner">
-      <span>WhatsApp Business: +1 786-386-5612</span>
-      <a href="https://wa.me/17863865612?text=Hola%20FreightDispatch%20LLC%2C%20quiero%20informaci%C3%B3n%20sobre%20cargas%20y%20despacho." target="_blank" rel="noopener noreferrer">Responder ahora</a>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="#inicio"><img src="assets/loadtwin-logo-full.png" alt="LoadTwin LLC"></a>
+    <div class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#equipos">Equipos</a>
+      <a href="#faq">Preguntas</a>
+      <a class="btn" href="https://wa.me/17863865612?text=Hola%20LoadTwin%20LLC%2C%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener">WhatsApp</a>
     </div>
   </div>
+</nav>
 
-  <header class="site-header" id="inicio">
-    <a class="brand" href="#inicio" aria-label="FreightDispatch LLC, inicio">
-      <span class="brand-mark"><img src="../Imagenes/Designer.png" alt="FreightDispatch LLC logo"></span>
-      <span>Freight<span>Dispatch</span><small>LLC</small></span>
-    </a>
-    <button class="menu-toggle icon-button" type="button" aria-label="Abrir menú" aria-expanded="false">
-      <i data-lucide="menu"></i>
-    </button>
-    <nav class="main-nav" aria-label="Navegación principal">
-      <a href="#soluciones">Soluciones</a>
-      <a href="#proceso">Proceso</a>
-      <a href="#contacto">Contacto</a>
-      <a class="nav-cta" href="https://wa.me/17863865612?text=Hola%20FreightDispatch%20LLC%2C%20quiero%20informaci%C3%B3n%20sobre%20cargas%20y%20despacho." target="_blank" rel="noopener noreferrer">Hablar por WhatsApp <i data-lucide="arrow-up-right"></i></a>
-    </nav>
-  </header>
+<header class="hero" id="inicio">
+  <div class="wrap hero-in">
+    <div class="hero-tx">
+    <h1>Tu próxima carga no se queda esperando. <em>La movemos.</em></h1>
+    <p>Despacho de cargas para choferes y carriers que quieren mejores rutas, menos tiempo vacío y un equipo que cuida cada movimiento — ida y vuelta.</p>
+    <div class="hero-cta">
+      <a class="btn" href="https://wa.me/17863865612?text=Hola%20LoadTwin%20LLC%2C%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+      <a class="btn ghost" href="#como-funciona" style="color:#fff;border-color:#fff">Cómo funciona</a>
+    </div>
+    <div class="note">Respuesta rápida · Sin forced dispatch · Tú siempre decides</div>
+    </div>
+    <img class="hero-img" src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=900&q=80" alt="Camión de carga recorriendo una carretera">
+  </div>
+</header>
 
-  <main>
-    <section class="hero section-grid">
-      <div class="hero-copy reveal">
-        <div class="eyebrow"><span class="pulse-dot"></span> Operaciones que avanzan</div>
-        <h1>Tu próxima carga no se queda esperando.<em> Lo movemos.</em></h1>
-        <p class="hero-lede">Dispatch de carga para transportistas y brokers que quieren rutas mejor alineadas, menos fricción operativa y más control sobre cada movimiento.</p>
-        <div class="hero-actions">
-          <a class="button button-dark" href="https://wa.me/17863865612?text=Hola%20FreightDispatch%20LLC%2C%20quiero%20informaci%C3%B3n%20sobre%20cargas%20y%20despacho." target="_blank" rel="noopener noreferrer">Hablar por WhatsApp <i data-lucide="arrow-right"></i></a>
-          <a class="text-link" href="#soluciones">Conoce nuestra operación <i data-lucide="play-circle"></i></a>
-        </div>
-        <div class="hero-trust">
-          <div class="avatar-stack" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1536147116438-62679a5e01f2?auto=format&fit=crop&w=80&q=80" alt="">
-            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=80" alt="">
-            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=80&q=80" alt="">
-          </div>
-          <span><strong>+250</strong> operadores ya se mueven con nosotros</span>
-        </div>
-      </div>
-      <div class="hero-visual reveal reveal-delay">
-        <div class="image-frame">
-          <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1200&q=85" alt="Camión de carga recorriendo una carretera">
-          <div class="image-stamp"><span>FD</span><strong>On the road<br>since 2019</strong></div>
-        </div>
-        <div class="route-card floating-card">
-          <div class="route-icon"><i data-lucide="navigation"></i></div>
-          <div><span>Ruta en seguimiento</span><strong>Miami <b>→</b> Dallas</strong></div>
-          <span class="status-chip">En ruta</span>
-        </div>
-      </div>
-    </section>
+<div class="strip">BUSCAMOS TU CARGA &nbsp;✦&nbsp; NEGOCIAMOS TU TARIFA &nbsp;✦&nbsp; CUIDAMOS TU REGRESO</div>
 
-    <section class="marquee-band" aria-label="Servicios de FreightDispatch">
-      <div class="marquee-track"><span>DISPATCH SMARTER</span><b>✦</b><span>DRIVE FURTHER</span><b>✦</b><span>GET PAID FASTER</span><b>✦</b><span>DISPATCH SMARTER</span><b>✦</b><span>DRIVE FURTHER</span><b>✦</b><span>GET PAID FASTER</span><b>✦</b></div>
-    </section>
+<section id="servicios">
+  <div class="wrap">
+    <div class="kicker">Servicios</div>
+    <h2>Menos fricción. <em>Más ruta.</em></h2>
+    <p class="lead">Nosotros nos encargamos de la operación para que tú te encargues de manejar.</p>
+    <div class="grid3">
+      <div class="card"><div class="n">01</div><h3>Búsqueda con criterio</h3><p>Filtramos cargas por ruta, equipo, tarifa y tiempos. Solo te presentamos oportunidades que sí encajan con tu operación.</p></div>
+      <div class="card"><div class="n">02</div><h3>Negociación que protege</h3><p>Hablamos con brokers, revisamos condiciones y cuidamos cada acuerdo antes de que pongas un pie en la carga.</p></div>
+      <div class="card"><div class="n">03</div><h3>Regreso con carga</h3><p>Te buscamos carga de vuelta para que no regreses vacío. Menos millas muertas, más dinero en tu bolsillo.</p></div>
+      <div class="card"><div class="n">04</div><h3>Documentos en orden</h3><p>Contratos, confirmaciones de tarifa, facturas y registros listos cuando los necesitas.</p></div>
+      <div class="card"><div class="n">05</div><h3>Adelanto de combustible</h3><p>Coordinamos tu adelanto con el broker para que salgas a ruta sin preocupaciones.</p></div>
+      <div class="card"><div class="n">06</div><h3>Seguimiento real</h3><p>Acompañamos cada carga hasta la entrega con prueba de entrega y comunicación clara.</p></div>
+    </div>
+  </div>
+</section>
 
-    <section class="solutions section-grid" id="soluciones">
-      <div class="section-heading reveal">
-        <div class="eyebrow">Una operación más clara</div>
-        <h2>Menos fricción.<br><em>Más ruta.</em></h2>
-        <p>Coordinamos la operación para que puedas mover carga con mejor sincronía, menos llamadas y más oportunidades reales.</p>
-        <a class="text-link" href="#contacto">Ver cómo podemos ayudarte <i data-lucide="arrow-up-right"></i></a>
-      </div>
-      <div class="service-list reveal reveal-delay">
-        <article class="service-item">
-          <span class="service-number">01</span><div class="service-icon"><i data-lucide="scan-search"></i></div>
-          <div><h3>Búsqueda con criterio</h3><p>Filtramos cargas por ruta, equipo, tarifa y tiempos para encontrar oportunidades que sí encajan.</p></div>
-          <i class="service-arrow" data-lucide="arrow-up-right"></i>
-        </article>
-        <article class="service-item">
-          <span class="service-number">02</span><div class="service-icon"><i data-lucide="handshake"></i></div>
-          <div><h3>Negociación que protege</h3><p>Conectamos con brokers y clientes, revisamos condiciones y cuidamos cada acuerdo.</p></div>
-          <i class="service-arrow" data-lucide="arrow-up-right"></i>
-        </article>
-        <article class="service-item">
-          <span class="service-number">03</span><div class="service-icon"><i data-lucide="file-check-2"></i></div>
-          <div><h3>Documentos en orden</h3><p>Contratos, rate confirmations, facturas y registros listos cuando los necesitas.</p></div>
-          <i class="service-arrow" data-lucide="arrow-up-right"></i>
-        </article>
-      </div>
-    </section>
+<section class="alt" id="como-funciona">
+  <div class="wrap">
+    <div class="kicker">Así se mueve contigo</div>
+    <h2>Del primer mensaje <em>al pago final.</em></h2>
+    <p class="lead">Un proceso claro, sin sorpresas.</p>
+    <div class="steps">
+      <div class="step"><div class="sn">PASO 1</div><h3>Cuéntanos tu operación</h3><p>Tipo de equipo, zonas y objetivos. Partimos de lo que realmente necesitas.</p></div>
+      <div class="step"><div class="sn">PASO 2</div><h3>Verificamos documentos</h3><p>CDL, MC/DOT, seguro y contrato de despacho. Todo en orden antes de rodar.</p></div>
+      <div class="step"><div class="sn">PASO 3</div><h3>Te presentamos cargas</h3><p>Opciones con tarifa, millas y análisis de costo. Tú decides cuál tomar.</p></div>
+      <div class="step"><div class="sn">PASO 4</div><h3>Rodamos hasta cerrar</h3><p>Confirmación firmada, seguimiento en ruta y facturación semanal.</p></div>
+    </div>
+  </div>
+</section>
 
-    <section class="stats-band">
-      <div class="stats-inner">
-        <div class="stat"><strong>98<span>%</span></strong><p>de cargas alineadas con el equipo correcto</p></div>
-        <div class="stat"><strong>24<span>/7</span></strong><p>visibilidad para cada movimiento</p></div>
-        <div class="stat"><strong>48<span>h</span></strong><p>promedio para activar una nueva ruta</p></div>
-        <div class="stat stat-note"><i data-lucide="quote"></i><p>“Un equipo que entiende la carretera y el negocio.”</p></div>
-      </div>
-    </section>
+<section id="equipos">
+  <div class="wrap">
+    <div class="kicker">Equipos</div>
+    <h2>Trabajamos con <em>tu equipo.</em></h2>
+    <p class="lead">Si ruedas con alguno de estos, podemos moverte.</p>
+    <div class="chips">
+      <span class="chip">Dry Van</span><span class="chip">Reefer</span><span class="chip">Flatbed</span>
+      <span class="chip">Step Deck</span><span class="chip">Box Truck</span><span class="chip">Hotshot</span>
+      <span class="chip">Sprinter / Cargo Van</span><span class="chip">Power Only</span>
+    </div>
+  </div>
+</section>
 
-    <section class="process section-grid" id="proceso">
-      <div class="process-photo reveal">
-        <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1000&q=85" alt="Camión Freightliner en una carretera abierta">
-        <div class="photo-label"><span>01</span><strong>Tu ruta,<br>nuestro foco.</strong></div>
-      </div>
-      <div class="process-copy reveal reveal-delay">
-        <div class="eyebrow">Así se mueve contigo</div>
-        <h2>Del primer mensaje<br>al <em>pago final.</em></h2>
-        <div class="steps">
-          <div class="step active"><span>01</span><div><h3>Cuéntanos tu operación</h3><p>Tipo de equipo, zonas y objetivos. Partimos de lo que realmente necesitas.</p></div></div>
-          <div class="step"><span>02</span><div><h3>Elegimos la mejor jugada</h3><p>Buscamos, comparamos y presentamos cargas con información completa.</p></div></div>
-          <div class="step"><span>03</span><div><h3>Seguimos hasta cerrar</h3><p>Coordinamos documentos, seguimiento y facturación para que no te detengas.</p></div></div>
-        </div>
-      </div>
-    </section>
+<section class="alt" id="faq">
+  <div class="wrap">
+    <div class="kicker">Preguntas frecuentes</div>
+    <h2>Antes de <em>preguntarnos.</em></h2>
+    <div style="max-width:720px;margin-top:24px">
+      <div class="faq-item"><h3>¿Cuánto cuesta el servicio? <span>+</span></h3><p>Cobramos un 8% del bruto de cada carga completada, facturado semanalmente. Sin cargos ocultos.</p></div>
+      <div class="faq-item"><h3>¿Me obligan a tomar cargas? <span>+</span></h3><p>No. No hay forced dispatch: te presentamos opciones y tú decides cuáles aceptar.</p></div>
+      <div class="faq-item"><h3>¿Cómo recibo mi dinero? <span>+</span></h3><p>El broker te paga directamente a ti (o a tu factoring). Nosotros solo facturamos nuestro 8% semanal.</p></div>
+      <div class="faq-item"><h3>¿Me ayudan con el combustible? <span>+</span></h3><p>Sí. Coordinamos el adelanto de combustible con el broker al reservar tu carga.</p></div>
+      <div class="faq-item"><h3>¿Qué documentos necesito? <span>+</span></h3><p>CDL vigente, autoridad MC activa, seguro ($1M responsabilidad civil / $100K carga), W-9 y registro del equipo.</p></div>
+    </div>
+  </div>
+</section>
 
-    <section class="contact-section" id="contacto">
-      <div class="contact-orbit orbit-one"></div><div class="contact-orbit orbit-two"></div>
-      <div class="contact-content section-grid">
-        <div class="contact-copy reveal"><div class="eyebrow eyebrow-light">Hablemos de tu siguiente movimiento</div><h2>Tu próxima ruta empieza<br>con una <em>respuesta rápida.</em></h2><p>Cuéntanos qué necesitas mover y te conectamos con la mejor opción de despacho para tu operación.</p><div class="contact-details"><span><i data-lucide="mail"></i> dispatch@freightdispatchllc.com</span><a class="contact-phone-link" href="https://wa.me/17863865612?text=Hola%20FreightDispatch%20LLC%2C%20quiero%20informaci%C3%B3n%20sobre%20cargas%20y%20despacho." target="_blank" rel="noopener noreferrer"><i data-lucide="phone"></i> WhatsApp Business: +1 786-386-5612</a></div></div>
-        <form class="contact-form reveal reveal-delay">
-          <div class="form-row"><label>Nombre<input type="text" name="name" placeholder="Tu nombre" required></label><label>Empresa<input type="text" name="company" placeholder="Nombre de tu empresa"></label></div>
-          <label>Correo electrónico<input type="email" name="email" placeholder="tu@empresa.com" required></label>
-          <label>¿Qué necesitas mover?<select name="need"><option value="dispatch">Despacho para mi camión</option><option value="load">Encontrar una carga</option><option value="partnership">Hablar de una alianza</option></select></label>
-          <button class="button button-coral" type="submit">Enviar solicitud <i data-lucide="arrow-up-right"></i></button>
-          <p class="form-note">Respondemos normalmente dentro de un día hábil.</p>
-          <p class="form-success" role="status" aria-live="polite">Recibimos tu solicitud. Te contactaremos pronto.</p>
-          <p class="form-error" role="alert" aria-live="assertive">No pudimos enviar la solicitud. Inténtalo de nuevo.</p>
-        </form>
-      </div>
-    </section>
-  </main>
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <div class="kicker">Contacto</div>
+    <h2>Empecemos a <em>moverte.</em></h2>
+    <p>Escríbenos por WhatsApp o correo con tu tipo de equipo y ubicación, y te respondemos con los siguientes pasos.</p>
+    <a class="btn" href="https://wa.me/17863865612?text=Hola%20LoadTwin%20LLC%2C%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener">Abrir WhatsApp</a>
+    <a class="phone" href="tel:+17863865612">+1 (786) 386-5612</a>
+    <a class="mail" href="mailto:info@loadtwinllc.com">info@loadtwinllc.com</a>
+    <div class="hours">Lun–Sáb · 8:00 AM – 8:00 PM (ET)</div>
+  </div>
+</section>
 
-  <footer class="site-footer"><a class="brand" href="#inicio"><span class="brand-mark"><img src="../Imagenes/Designer.png" alt="FreightDispatch LLC logo"></span><span>Freight<span>Dispatch</span><small>LLC</small></span></a><p>Built for the road ahead.</p><span>© 2026 FreightDispatch LLC</span></footer>
+<footer>
+  <div class="wrap foot-in">
+    <img src="assets/loadtwin-logo-full.png" alt="LoadTwin LLC">
+    <div>© 2026 LoadTwin LLC · Truck Dispatch Services</div>
+  </div>
+</footer>
 
-  <a class="whatsapp-float" href="https://wa.me/17863865612?text=Hola%20FreightDispatch%20LLC%2C%20quiero%20informaci%C3%B3n%20sobre%20cargas%20y%20despacho." target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
-    <i data-lucide="message-circle-more"></i>
-  </a>
+<script>
+document.querySelectorAll('.faq-item h3').forEach(h=>{
+  h.addEventListener('click',()=>h.parentElement.classList.toggle('open'));
+});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+  });
+});
+</script>
 </body>
 </html>
